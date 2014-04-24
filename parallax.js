@@ -1,4 +1,4 @@
-/**************************/
+ /**************************/
 /*** parallax ************/
 /*** by Ron Marcelle ******/
 /*** Licensed under MIT ***/
@@ -22,7 +22,8 @@
 	    		horzFixed = ( typeof horz.fixed !== false || typeof horz.fixed !== "undefined" ? horz.fixed : false );
 	    	if ( horzFixed ) { return horzFixed; }
 	    	else {
-		    	return (-( $(this).offset().left - $window.scrollLeft() ) * horz.inertia) + "px";
+	    		var o =  $(this).offset() && typeof $(this).offset().left ? $(this).offset().left : 0;	    	
+		    	if ( o ) { return (-( o - $window.scrollLeft() ) * horz.inertia) + "px"; }
 	    	}
 	    },
 	    yValue = function(adjuster, inertia){
@@ -30,7 +31,8 @@
 	    		vertFixed = ( typeof vert.fixed !== false || typeof vert.fixed !== "undefined" ? vert.fixed : false );
 	    	if ( vertFixed ) { return vertFixed; }
 	    	else {
-		    	return (-( $(this).offset().top - $window.scrollTop() ) * vert.inertia) + "px";
+	    		var o =  $(this).offset() && typeof $(this).offset().top ? $(this).offset().top : 0;
+		    	if ( o ) { return (-( o - $window.scrollTop() ) * vert.inertia) + "px"; }
 	    	}
 	    },
 	    init = function( options ) {
